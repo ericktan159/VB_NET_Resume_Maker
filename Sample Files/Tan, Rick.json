@@ -1,0 +1,48 @@
+{
+  "FirstName": "Rick",
+  "MiddleName": "B.",
+  "LastName": "Tan",
+  "Address": "Marikina City",
+  "ContactNumber": "09123456789",
+  "EmailAddress": "ericktan159@gmail.com",
+  "Summary": "Time is Gold",
+  "info_EducationaBackGround_LisOfDictionary": [
+    {
+      "School Name": "Elementary School",
+      "Year Started": "2004",
+      "Year Ended": "2010",
+      "Remarks": "Very Good"
+    },
+    {
+      "School Name": "High School",
+      "Year Started": "2010",
+      "Year Ended": "2014",
+      "Remarks": "Excelence"
+    },
+    {
+      "School Name": "College",
+      "Year Started": "2015",
+      "Year Ended": "2022",
+      "Remarks": "Outstanding"
+    },
+    {
+      "School Name": "PUP",
+      "Year Started": "2015",
+      "Year Ended": "2022",
+      "Remarks": "Master"
+    }
+  ],
+  "info_Skills_ListOfString": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11"
+  ]
+}

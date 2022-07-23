@@ -1,0 +1,40 @@
+{
+  "FirstName": "Frederick",
+  "MiddleName": "B.",
+  "LastName": "Tan",
+  "Address": "Marikina City",
+  "ContactNumber": "09123456789",
+  "EmailAddress": "ericktan159@gmail.com",
+  "Summary": "Pursue excellence and Success will Foloow. All Is Well",
+  "info_EducationaBackGround_LisOfDictionary": [
+    {
+      "School Name": "Elementary School",
+      "Year Started": "2004",
+      "Year Ended": "2010",
+      "Remarks": "Very Good"
+    },
+    {
+      "School Name": "High School",
+      "Year Started": "2010",
+      "Year Ended": "2014",
+      "Remarks": "Excelence"
+    },
+    {
+      "School Name": "College",
+      "Year Started": "2015",
+      "Year Ended": "2022",
+      "Remarks": "Outstanding"
+    }
+  ],
+  "info_Skills_ListOfString": [
+    "C Programming",
+    "Java Programming",
+    "Python Programming",
+    "C# Programming",
+    "Vb.Net Programming",
+    "Assembly Programming",
+    "Logic Circuit Design",
+    "Advance Math Problem solving",
+    "Advance Science Problem solving"
+  ]
+}
