@@ -502,7 +502,7 @@ Module MyModule
 
 
 
-            Dim skillTable As PdfPTable = New PdfPTable(3)
+            Dim skillTable As PdfPTable = New PdfPTable(1)
 
             If myUserData.info_Skills_ListOfString.Count > 0 Then
                 skillTable.WidthPercentage = 100
