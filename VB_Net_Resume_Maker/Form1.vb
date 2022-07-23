@@ -144,6 +144,11 @@ Public Class Form1
         End If
 
     End Sub
+    Public Function display_Warning_Ok(msg As String, caption As String) As DialogResult
+
+        Return MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+
+    End Function
 
     Public Function display_Information_Ok(msg As String, caption As String) As DialogResult
 
@@ -205,19 +210,10 @@ Public Class Form1
     Private Sub event_call_add_educ_Dialog()
         Dim educ_Form As EducationalBackGroundForm = New EducationalBackGroundForm()
         educ_Form.ShowDialog()
-        Dim temStr As String = ""
-        For Each row_Dictionary As Dictionary(Of String, String) In info_EducationaBackGround_LisOfDictionary
-
-            temStr += $"{row_Dictionary(MyDictionary_EducationalBackGround.Key_Names.key_School_Name)} {vbTab} " +
-            $"{row_Dictionary(MyDictionary_EducationalBackGround.Key_Names.key_Year_Started)} {vbTab} " +
-            $"{row_Dictionary(MyDictionary_EducationalBackGround.Key_Names.key_Year_Ended)} {vbTab} " +
-            $"{row_Dictionary(MyDictionary_EducationalBackGround.Key_Names.key_Remarks)} {vbNewLine}"
-
-        Next
-        MessageBox.Show(temStr)
-
-
+        MessageBox.Show(EducationalBackGroundForm.show_Table_Data())
     End Sub
+
+
 
     Private Sub lstVw_EducatuonalBackGorund_Click(sender As Object, e As EventArgs) Handles lstVw_EducatuonalBackGorund.Click
         event_LstVw_EducatuonalBackGorund_Click()
@@ -237,11 +233,23 @@ Public Class Form1
     End Sub
 
     Private Sub btn_Remove_Educ_Click(sender As Object, e As EventArgs) Handles btn_Remove_Educ.Click
+
         event_btn_Remove_Educ_Click()
     End Sub
 
     Private Sub event_btn_Remove_Educ_Click()
-        info_EducationaBackGround_LisOfDictionary.RemoveAt(info_EducationaBackGround_LisOfDictionary.Count - 1)
+        If info_EducationaBackGround_LisOfDictionary.Count > 0 Then
+            If display_Question_YesNo("Do you really want to delete this Row?" + vbNewLine +
+                                  EducationalBackGroundForm.view_Row_Data(), "Delete Last Row of Educational BackGround") = DialogResult.Yes Then
+                info_EducationaBackGround_LisOfDictionary.RemoveAt(info_EducationaBackGround_LisOfDictionary.Count - 1)
+                EducationalBackGroundForm.displayTable_EducationaBackGround()
+            End If
+        Else
+            display_Warning_Ok("Empty Table", "Educational BackGround Table")
+        End If
+
+
+
     End Sub
 End Class
 
@@ -329,7 +337,6 @@ Module MyModule
             Catch ex As Exception
                 MessageBox.Show("Invalid", "Error")
             End Try
-            'CreateUserData(jsonContent)
             If myUserData IsNot Nothing Then
                 InputDataForm.convert_USERData_to_InputFORM(myUserData, inputsFromForm)
                 Return True
