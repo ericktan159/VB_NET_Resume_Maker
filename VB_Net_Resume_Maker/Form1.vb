@@ -237,7 +237,7 @@ Public Class Form1
     Private Sub event_call_add_educ_Dialog()
         Dim educ_Form As EducationalBackGroundForm = New EducationalBackGroundForm()
         educ_Form.ShowDialog()
-        MessageBox.Show(EducationalBackGroundForm.show_Table_Data())
+        'MessageBox.Show(EducationalBackGroundForm.show_Table_Data())
     End Sub
 
 
@@ -299,7 +299,7 @@ Public Class Form1
     Private Sub event_call_add_Skill()
         Dim skill_Form As SkillsForm = New SkillsForm()
         skill_Form.ShowDialog()
-        MessageBox.Show(SkillsForm.show_Table_Data())
+        'MessageBox.Show(SkillsForm.show_Table_Data())
     End Sub
 
     Private Sub btn_Remove_Skills_Form1_Click(sender As Object, e As EventArgs) Handles btn_Remove_Skills_Form1.Click
