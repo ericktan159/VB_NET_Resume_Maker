@@ -10,13 +10,21 @@ Public Class Form1
 
     Dim inputsFromForm As InputDataForm
 
+    Public info_EducationaBackGround_LisOfDictionary As List(Of Dictionary(Of String, String)) = New List(Of Dictionary(Of String, String))()
 
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        init_ListView_EducationalBackGround()
     End Sub
 
+    Public Sub init_ListView_EducationalBackGround()
+
+        lstVw_EducatuonalBackGorund.Columns.Add("School Name", 200, HorizontalAlignment.Left)
+        lstVw_EducatuonalBackGorund.Columns.Add("Year Started", 80, HorizontalAlignment.Left)
+        lstVw_EducatuonalBackGorund.Columns.Add("Year Ended", 80, HorizontalAlignment.Left)
+        lstVw_EducatuonalBackGorund.Columns.Add("Remarks", 150, HorizontalAlignment.Left)
+    End Sub
     Private Sub CopyInputs()
         inputsFromForm = New InputDataForm()
 
@@ -79,6 +87,10 @@ Public Class Form1
                 ClearInputs()
             End If
         End If
+    End Sub
+
+    Private Sub event_chckBx_AddDeatails_CheckedChanged()
+
     End Sub
     Public Function IsInputsComplete() As Boolean
         Dim listOfIncompleteFields As New List(Of String)
@@ -171,11 +183,65 @@ Public Class Form1
         event_btnCreatePDFResume()
     End Sub
 
-    Private Sub txtBxCellNumber_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtBxCellNumber.KeyPress
+    Private Sub txtBxCellNumber_KeyPress(sender As Object, e As KeyPressEventArgs)
         If (Not Char.IsDigit(e.KeyChar) And (Not Char.IsControl(e.KeyChar))) Then
             e.Handled = True
 
         End If
+    End Sub
+
+    Private Sub chckBx_AddDeatails_CheckedChanged(sender As Object, e As EventArgs) Handles chckBx_AddDeatails.CheckedChanged
+        event_chckBx_AddDeatails_CheckedChanged()
+    End Sub
+
+    Private Sub RichTextBox1_TextChanged(sender As Object, e As EventArgs) Handles RichTextBox1.TextChanged
+
+    End Sub
+
+    Private Sub btn_add_Educ_Click(sender As Object, e As EventArgs) Handles btn_add_Educ.Click
+        event_call_add_educ_Dialog()
+    End Sub
+
+    Private Sub event_call_add_educ_Dialog()
+        Dim educ_Form As EducationalBackGroundForm = New EducationalBackGroundForm()
+        educ_Form.ShowDialog()
+        Dim temStr As String = ""
+        For Each row_Dictionary As Dictionary(Of String, String) In info_EducationaBackGround_LisOfDictionary
+
+            temStr += $"{row_Dictionary(MyDictionary_EducationalBackGround.Key_Names.key_School_Name)} {vbTab} " +
+            $"{row_Dictionary(MyDictionary_EducationalBackGround.Key_Names.key_Year_Started)} {vbTab} " +
+            $"{row_Dictionary(MyDictionary_EducationalBackGround.Key_Names.key_Year_Ended)} {vbTab} " +
+            $"{row_Dictionary(MyDictionary_EducationalBackGround.Key_Names.key_Remarks)} {vbNewLine}"
+
+        Next
+        MessageBox.Show(temStr)
+
+
+    End Sub
+
+    Private Sub lstVw_EducatuonalBackGorund_Click(sender As Object, e As EventArgs) Handles lstVw_EducatuonalBackGorund.Click
+        event_LstVw_EducatuonalBackGorund_Click()
+    End Sub
+
+    Private Sub event_LstVw_EducatuonalBackGorund_Click()
+        Dim educ_Form As EducationalBackGroundForm = New EducationalBackGroundForm()
+        If (lstVw_EducatuonalBackGorund.SelectedItems.Count > 0) Then
+            educ_Form.txtBx_SchoolName.Text = lstVw_EducatuonalBackGorund.SelectedItems(0).SubItems(0).Text
+            educ_Form.txtBx_YearStarted.Text = lstVw_EducatuonalBackGorund.SelectedItems(0).SubItems(1).Text
+            educ_Form.txtBx_YearEnded.Text = lstVw_EducatuonalBackGorund.SelectedItems(0).SubItems(2).Text
+            educ_Form.txtBx_Remarks.Text = lstVw_EducatuonalBackGorund.SelectedItems(0).SubItems(3).Text
+
+            educ_Form.ShowDialog()
+        End If
+
+    End Sub
+
+    Private Sub btn_Remove_Educ_Click(sender As Object, e As EventArgs) Handles btn_Remove_Educ.Click
+        event_btn_Remove_Educ_Click()
+    End Sub
+
+    Private Sub event_btn_Remove_Educ_Click()
+        info_EducationaBackGround_LisOfDictionary.RemoveAt(info_EducationaBackGround_LisOfDictionary.Count - 1)
     End Sub
 End Class
 
