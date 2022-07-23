@@ -249,6 +249,7 @@ End Class
 
 Module MyModule
 
+
     <Serializable>
     Class UserData
         Public FirstName As String

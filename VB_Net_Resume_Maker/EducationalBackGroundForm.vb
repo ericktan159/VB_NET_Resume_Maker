@@ -1,25 +1,4 @@
 ﻿
-
-
-
-
-Public Class MyDictionary_EducationalBackGround
-
-
-
-    Public Class Key_Names
-
-        Public Const key_School_Name As String = "School Name"
-        Public Const key_Year_Started As String = "Year Started"
-        Public Const key_Year_Ended As String = "Year Ended"
-        Public Const key_Remarks As String = "Remarks"
-
-    End Class
-End Class
-
-
-
-
 Public Class EducationalBackGroundForm
     Dim lstVw_EducatuonalBackGorund_Local As ListView
     Private Sub EducationalBackGroundForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -73,3 +52,17 @@ Public Class EducationalBackGroundForm
     End Sub
 
 End Class
+
+Module Educ
+    Public Class MyDictionary_EducationalBackGround
+        Public Class Key_Names
+
+            Public Const key_School_Name As String = "School Name"
+            Public Const key_Year_Started As String = "Year Started"
+            Public Const key_Year_Ended As String = "Year Ended"
+            Public Const key_Remarks As String = "Remarks"
+
+        End Class
+    End Class
+
+End Module
