@@ -188,7 +188,14 @@ Public Class Form1
         event_btnCreatePDFResume()
     End Sub
 
-    Private Sub txtBxCellNumber_KeyPress(sender As Object, e As KeyPressEventArgs)
+    Private Sub txtBxCellNumber_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtBxCellNumber.KeyPress
+
+
+        event_NumbersOnly_KeyPress(e)
+
+    End Sub
+
+    Private Sub event_NumbersOnly_KeyPress(e As KeyPressEventArgs)
         If (Not Char.IsDigit(e.KeyChar) And (Not Char.IsControl(e.KeyChar))) Then
             e.Handled = True
 
