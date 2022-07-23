@@ -21,3 +21,4 @@ E:\AdminFileFolder\AlphaSource\repos\MyRepos\VB_Net_Resume_Maker\VB_Net_Resume_M
 E:\AdminFileFolder\AlphaSource\repos\MyRepos\VB_Net_Resume_Maker\VB_Net_Resume_Maker\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
 E:\AdminFileFolder\AlphaSource\repos\MyRepos\VB_NET_Resume_Maker\VB_Net_Resume_Maker\obj\Debug\net5.0-windows\VB_Net_Resume_Maker.AdddDetailsForm.resources
 E:\AdminFileFolder\AlphaSource\repos\MyRepos\VB_Net_Resume_Maker\VB_Net_Resume_Maker\obj\Debug\net5.0-windows\VB_Net_Resume_Maker.EducationalBackGroundForm.resources
+E:\AdminFileFolder\AlphaSource\repos\MyRepos\VB_Net_Resume_Maker\VB_Net_Resume_Maker\obj\Debug\net5.0-windows\VB_Net_Resume_Maker.SkillsForm.resources

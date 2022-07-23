@@ -29,7 +29,6 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnUploadJSON = New System.Windows.Forms.Button()
         Me.jsonFileSelect = New System.Windows.Forms.OpenFileDialog()
-        Me.chckBx_AddDeatails = New System.Windows.Forms.CheckBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtBxLastName = New System.Windows.Forms.TextBox()
@@ -49,6 +48,10 @@ Partial Class Form1
         Me.lstVw_EducatuonalBackGorund = New System.Windows.Forms.ListView()
         Me.btn_Remove_Educ = New System.Windows.Forms.Button()
         Me.btn_add_Educ = New System.Windows.Forms.Button()
+        Me.lstVw_Skills = New System.Windows.Forms.ListView()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.btn_Add_Skills_Form1 = New System.Windows.Forms.Button()
+        Me.btn_Remove_Skills_Form1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnCreateJSON
@@ -110,16 +113,6 @@ Partial Class Form1
         Me.btnUploadJSON.TabIndex = 126
         Me.btnUploadJSON.Text = "Upload JSON"
         Me.btnUploadJSON.UseVisualStyleBackColor = False
-        '
-        'chckBx_AddDeatails
-        '
-        Me.chckBx_AddDeatails.AutoSize = True
-        Me.chckBx_AddDeatails.Location = New System.Drawing.Point(23, 337)
-        Me.chckBx_AddDeatails.Name = "chckBx_AddDeatails"
-        Me.chckBx_AddDeatails.Size = New System.Drawing.Size(86, 19)
-        Me.chckBx_AddDeatails.TabIndex = 134
-        Me.chckBx_AddDeatails.Text = "Add Details"
-        Me.chckBx_AddDeatails.UseVisualStyleBackColor = True
         '
         'Label3
         '
@@ -295,7 +288,7 @@ Partial Class Form1
         '
         'btn_Remove_Educ
         '
-        Me.btn_Remove_Educ.Location = New System.Drawing.Point(1252, 92)
+        Me.btn_Remove_Educ.Location = New System.Drawing.Point(1252, 88)
         Me.btn_Remove_Educ.Name = "btn_Remove_Educ"
         Me.btn_Remove_Educ.Size = New System.Drawing.Size(75, 23)
         Me.btn_Remove_Educ.TabIndex = 169
@@ -304,18 +297,60 @@ Partial Class Form1
         '
         'btn_add_Educ
         '
-        Me.btn_add_Educ.Location = New System.Drawing.Point(1252, 63)
+        Me.btn_add_Educ.Location = New System.Drawing.Point(1252, 59)
         Me.btn_add_Educ.Name = "btn_add_Educ"
         Me.btn_add_Educ.Size = New System.Drawing.Size(75, 23)
         Me.btn_add_Educ.TabIndex = 170
         Me.btn_add_Educ.Text = "add"
         Me.btn_add_Educ.UseVisualStyleBackColor = True
         '
+        'lstVw_Skills
+        '
+        Me.lstVw_Skills.GridLines = True
+        Me.lstVw_Skills.HideSelection = False
+        Me.lstVw_Skills.Location = New System.Drawing.Point(700, 196)
+        Me.lstVw_Skills.Name = "lstVw_Skills"
+        Me.lstVw_Skills.Size = New System.Drawing.Size(546, 97)
+        Me.lstVw_Skills.TabIndex = 171
+        Me.lstVw_Skills.UseCompatibleStateImageBehavior = False
+        Me.lstVw_Skills.View = System.Windows.Forms.View.Details
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(700, 176)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(33, 15)
+        Me.Label4.TabIndex = 172
+        Me.Label4.Text = "Skills"
+        '
+        'btn_Add_Skills_Form1
+        '
+        Me.btn_Add_Skills_Form1.Location = New System.Drawing.Point(1252, 196)
+        Me.btn_Add_Skills_Form1.Name = "btn_Add_Skills_Form1"
+        Me.btn_Add_Skills_Form1.Size = New System.Drawing.Size(75, 23)
+        Me.btn_Add_Skills_Form1.TabIndex = 174
+        Me.btn_Add_Skills_Form1.Text = "add"
+        Me.btn_Add_Skills_Form1.UseVisualStyleBackColor = True
+        '
+        'btn_Remove_Skills_Form1
+        '
+        Me.btn_Remove_Skills_Form1.Location = New System.Drawing.Point(1252, 225)
+        Me.btn_Remove_Skills_Form1.Name = "btn_Remove_Skills_Form1"
+        Me.btn_Remove_Skills_Form1.Size = New System.Drawing.Size(75, 23)
+        Me.btn_Remove_Skills_Form1.TabIndex = 173
+        Me.btn_Remove_Skills_Form1.Text = "Remove"
+        Me.btn_Remove_Skills_Form1.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1339, 445)
+        Me.Controls.Add(Me.btn_Add_Skills_Form1)
+        Me.Controls.Add(Me.btn_Remove_Skills_Form1)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.lstVw_Skills)
         Me.Controls.Add(Me.btn_add_Educ)
         Me.Controls.Add(Me.btn_Remove_Educ)
         Me.Controls.Add(Me.lstVw_EducatuonalBackGorund)
@@ -335,7 +370,6 @@ Partial Class Form1
         Me.Controls.Add(Me.txtBxCellNumber)
         Me.Controls.Add(Me.labelAddress)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.chckBx_AddDeatails)
         Me.Controls.Add(Me.btnCreateJSON)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.btnCreatePDF)
@@ -356,7 +390,6 @@ Partial Class Form1
     Friend WithEvents buttonUploadJSON As Button
     Friend WithEvents jsonFileSelect As OpenFileDialog
     Friend WithEvents btnUploadJSON As Button
-    Friend WithEvents chckBx_AddDeatails As CheckBox
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents txtBxLastName As TextBox
@@ -376,4 +409,8 @@ Partial Class Form1
     Friend WithEvents lstVw_EducatuonalBackGorund As ListView
     Friend WithEvents btn_Remove_Educ As Button
     Friend WithEvents btn_add_Educ As Button
+    Friend WithEvents lstVw_Skills As ListView
+    Friend WithEvents Label4 As Label
+    Friend WithEvents btn_Add_Skills_Form1 As Button
+    Friend WithEvents btn_Remove_Skills_Form1 As Button
 End Class

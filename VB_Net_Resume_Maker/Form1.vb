@@ -11,11 +11,13 @@ Public Class Form1
     Dim inputsFromForm As InputDataForm
 
     Public info_EducationaBackGround_LisOfDictionary As List(Of Dictionary(Of String, String)) = New List(Of Dictionary(Of String, String))()
+    Public info_Skills_ListOfString As List(Of String) = New List(Of String)()
 
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         init_ListView_EducationalBackGround()
+        init_ListView_Skills()
     End Sub
 
     Public Sub init_ListView_EducationalBackGround()
@@ -25,6 +27,12 @@ Public Class Form1
         lstVw_EducatuonalBackGorund.Columns.Add("Year Ended", 80, HorizontalAlignment.Left)
         lstVw_EducatuonalBackGorund.Columns.Add("Remarks", 150, HorizontalAlignment.Left)
     End Sub
+
+    Public Sub init_ListView_Skills()
+
+        lstVw_Skills.Columns.Add("Skills", 500, HorizontalAlignment.Left)
+    End Sub
+
     Private Sub CopyInputs()
         inputsFromForm = New InputDataForm()
 
@@ -37,7 +45,7 @@ Public Class Form1
         inputsFromForm.txtBxSummary = txtBxSummary
 
         inputsFromForm.info_EducationaBackGround_LisOfDictionary = info_EducationaBackGround_LisOfDictionary
-
+        inputsFromForm.info_Skills_ListOfString = info_Skills_ListOfString
     End Sub
 
 
@@ -178,6 +186,8 @@ Public Class Form1
         Me.info_EducationaBackGround_LisOfDictionary.Clear()
         lstVw_EducatuonalBackGorund.Items.Clear()
 
+        Me.info_Skills_ListOfString.Clear()
+        lstVw_Skills.Items.Clear()
 
 
     End Sub
@@ -212,7 +222,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub chckBx_AddDeatails_CheckedChanged(sender As Object, e As EventArgs) Handles chckBx_AddDeatails.CheckedChanged
+    Private Sub chckBx_AddDeatails_CheckedChanged(sender As Object, e As EventArgs)
         event_chckBx_AddDeatails_CheckedChanged()
     End Sub
 
@@ -282,6 +292,42 @@ Public Class Form1
         Next
     End Sub
 
+    Private Sub btn_Add_Skills_Form1_Click(sender As Object, e As EventArgs) Handles btn_Add_Skills_Form1.Click
+        event_call_add_Skill()
+    End Sub
+
+    Private Sub event_call_add_Skill()
+        Dim skill_Form As SkillsForm = New SkillsForm()
+        skill_Form.ShowDialog()
+        MessageBox.Show(SkillsForm.show_Table_Data())
+    End Sub
+
+    Private Sub btn_Remove_Skills_Form1_Click(sender As Object, e As EventArgs) Handles btn_Remove_Skills_Form1.Click
+        event_Call_Remove_Skill()
+    End Sub
+
+    Private Sub event_Call_Remove_Skill()
+        If info_Skills_ListOfString.Count > 0 Then
+            If display_Question_YesNo("Do you really want to delete this Row?" + vbNewLine +
+                                  SkillsForm.view_Row_Data(), "Delete Last Row of Educational BackGround") = DialogResult.Yes Then
+                info_Skills_ListOfString.RemoveAt(info_Skills_ListOfString.Count - 1)
+                SkillsForm.displayTable_SkillsTable()
+            End If
+        Else
+            display_Warning_Ok("Empty Table", "Educational BackGround Table")
+        End If
+
+    End Sub
+
+    Public Sub print_ListView_Skils(info_Skills_ListOfString As List(Of String))
+        Me.info_Skills_ListOfString = info_Skills_ListOfString
+        lstVw_Skills.Items.Clear()
+        For Each row_Skill_str As String In info_Skills_ListOfString
+            Dim new_ListViewItem As New ListViewItem(row_Skill_str)
+            lstVw_Skills.Items.Add(new_ListViewItem)
+        Next
+    End Sub
+
 End Class
 
 
@@ -300,6 +346,8 @@ Module MyModule
         Public Summary As String
 
         Public info_EducationaBackGround_LisOfDictionary As List(Of Dictionary(Of String, String))
+        Public info_Skills_ListOfString As List(Of String)
+
 
 
     End Class
@@ -315,6 +363,7 @@ Module MyModule
         Public txtBxSummary As TextBox
 
         Public info_EducationaBackGround_LisOfDictionary As List(Of Dictionary(Of String, String))
+        Public info_Skills_ListOfString As List(Of String)
 
 
 
@@ -329,10 +378,14 @@ Module MyModule
             inputsFromForm.txtBxSummary.Text = myUserData.Summary
 
             If (myUserData.info_EducationaBackGround_LisOfDictionary IsNot Nothing) Then
-                inputsFromForm.info_EducationaBackGround_LisOfDictionary = myUserData.info_EducationaBackGround_LisOfDictionary
+                'inputsFromForm.info_EducationaBackGround_LisOfDictionary = myUserData.info_EducationaBackGround_LisOfDictionary
                 Form1.print_ListView_EducationalBackGround(myUserData.info_EducationaBackGround_LisOfDictionary)
                 'EducationalBackGroundForm.displayTable_EducationaBackGround()
             End If
+            If (myUserData.info_Skills_ListOfString IsNot Nothing) Then
+                Form1.print_ListView_Skils(myUserData.info_Skills_ListOfString)
+            End If
+
 
         End Sub
 
@@ -346,7 +399,7 @@ Module MyModule
             myUserData.EmailAddress = inputsFromForm.txtBxEmail.Text
             myUserData.Summary = inputsFromForm.txtBxSummary.Text
             myUserData.info_EducationaBackGround_LisOfDictionary = inputsFromForm.info_EducationaBackGround_LisOfDictionary
-
+            myUserData.info_Skills_ListOfString = inputsFromForm.info_Skills_ListOfString
         End Sub
 
 
@@ -449,6 +502,16 @@ Module MyModule
 
 
 
+            Dim skillTable As PdfPTable = New PdfPTable(3)
+
+            If myUserData.info_Skills_ListOfString.Count > 0 Then
+                skillTable.WidthPercentage = 100
+                skillTable.DefaultCell.Border = Rectangle.NO_BORDER
+                For Each skill As String In myUserData.info_Skills_ListOfString
+                    skillTable.AddCell(New Paragraph($"- {skill}", fontStyle_Body))
+                Next
+            End If
+
             doc.Open()
             doc.Add(nameParagraph)
             doc.Add(contactParagraph)
@@ -465,6 +528,13 @@ Module MyModule
                 doc.Add(educTable)
             End If
 
+
+            If myUserData.info_Skills_ListOfString.Count > 0 Then
+                doc.Add(New Paragraph(vbCrLf))
+                doc.Add(New Paragraph("Skills:", fontStyle_SubHeader))
+                doc.Add(New Paragraph(vbCrLf))
+                doc.Add(skillTable)
+            End If
 
             doc.Close()
             Return True
