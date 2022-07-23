@@ -30,7 +30,6 @@ Partial Class Form1
         Me.btnUploadJSON = New System.Windows.Forms.Button()
         Me.jsonFileSelect = New System.Windows.Forms.OpenFileDialog()
         Me.chckBx_AddDeatails = New System.Windows.Forms.CheckBox()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtBxLastName = New System.Windows.Forms.TextBox()
@@ -47,7 +46,6 @@ Partial Class Form1
         Me.txtBxEmail = New System.Windows.Forms.TextBox()
         Me.txtBxCellNumber = New System.Windows.Forms.TextBox()
         Me.labelAddress = New System.Windows.Forms.Label()
-        Me.btn_Edit_Educ = New System.Windows.Forms.Button()
         Me.lstVw_EducatuonalBackGorund = New System.Windows.Forms.ListView()
         Me.btn_Remove_Educ = New System.Windows.Forms.Button()
         Me.btn_add_Educ = New System.Windows.Forms.Button()
@@ -122,14 +120,6 @@ Partial Class Form1
         Me.chckBx_AddDeatails.TabIndex = 134
         Me.chckBx_AddDeatails.Text = "Add Details"
         Me.chckBx_AddDeatails.UseVisualStyleBackColor = True
-        '
-        'RichTextBox1
-        '
-        Me.RichTextBox1.Location = New System.Drawing.Point(700, 258)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(546, 84)
-        Me.RichTextBox1.TabIndex = 150
-        Me.RichTextBox1.Text = ""
         '
         'Label3
         '
@@ -292,15 +282,6 @@ Partial Class Form1
         Me.labelAddress.TabIndex = 154
         Me.labelAddress.Text = "Address:"
         '
-        'btn_Edit_Educ
-        '
-        Me.btn_Edit_Educ.Location = New System.Drawing.Point(1252, 86)
-        Me.btn_Edit_Educ.Name = "btn_Edit_Educ"
-        Me.btn_Edit_Educ.Size = New System.Drawing.Size(75, 23)
-        Me.btn_Edit_Educ.TabIndex = 167
-        Me.btn_Edit_Educ.Text = "edit"
-        Me.btn_Edit_Educ.UseVisualStyleBackColor = True
-        '
         'lstVw_EducatuonalBackGorund
         '
         Me.lstVw_EducatuonalBackGorund.GridLines = True
@@ -314,7 +295,7 @@ Partial Class Form1
         '
         'btn_Remove_Educ
         '
-        Me.btn_Remove_Educ.Location = New System.Drawing.Point(1252, 115)
+        Me.btn_Remove_Educ.Location = New System.Drawing.Point(1252, 92)
         Me.btn_Remove_Educ.Name = "btn_Remove_Educ"
         Me.btn_Remove_Educ.Size = New System.Drawing.Size(75, 23)
         Me.btn_Remove_Educ.TabIndex = 169
@@ -323,7 +304,7 @@ Partial Class Form1
         '
         'btn_add_Educ
         '
-        Me.btn_add_Educ.Location = New System.Drawing.Point(1252, 59)
+        Me.btn_add_Educ.Location = New System.Drawing.Point(1252, 63)
         Me.btn_add_Educ.Name = "btn_add_Educ"
         Me.btn_add_Educ.Size = New System.Drawing.Size(75, 23)
         Me.btn_add_Educ.TabIndex = 170
@@ -338,7 +319,6 @@ Partial Class Form1
         Me.Controls.Add(Me.btn_add_Educ)
         Me.Controls.Add(Me.btn_Remove_Educ)
         Me.Controls.Add(Me.lstVw_EducatuonalBackGorund)
-        Me.Controls.Add(Me.btn_Edit_Educ)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txtBxLastName)
         Me.Controls.Add(Me.labelLastName)
@@ -355,7 +335,6 @@ Partial Class Form1
         Me.Controls.Add(Me.txtBxCellNumber)
         Me.Controls.Add(Me.labelAddress)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.RichTextBox1)
         Me.Controls.Add(Me.chckBx_AddDeatails)
         Me.Controls.Add(Me.btnCreateJSON)
         Me.Controls.Add(Me.btnClear)
@@ -378,7 +357,6 @@ Partial Class Form1
     Friend WithEvents jsonFileSelect As OpenFileDialog
     Friend WithEvents btnUploadJSON As Button
     Friend WithEvents chckBx_AddDeatails As CheckBox
-    Friend WithEvents RichTextBox1 As RichTextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents txtBxLastName As TextBox
@@ -395,7 +373,6 @@ Partial Class Form1
     Friend WithEvents txtBxEmail As TextBox
     Friend WithEvents txtBxCellNumber As TextBox
     Friend WithEvents labelAddress As Label
-    Friend WithEvents btn_Edit_Educ As Button
     Friend WithEvents lstVw_EducatuonalBackGorund As ListView
     Friend WithEvents btn_Remove_Educ As Button
     Friend WithEvents btn_add_Educ As Button

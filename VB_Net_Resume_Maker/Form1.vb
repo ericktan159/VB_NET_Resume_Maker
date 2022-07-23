@@ -35,6 +35,9 @@ Public Class Form1
         inputsFromForm.txtBxCellNumber = txtBxCellNumber
         inputsFromForm.txtBxEmail = txtBxEmail
         inputsFromForm.txtBxSummary = txtBxSummary
+
+        inputsFromForm.info_EducationaBackGround_LisOfDictionary = info_EducationaBackGround_LisOfDictionary
+
     End Sub
 
 
@@ -44,6 +47,7 @@ Public Class Form1
         If jsonFileSelect.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             CopyInputs()
             If myJSON.uploadFileJSON(jsonFileSelect.FileName, inputsFromForm) Then
+                'print_ListView_EducationalBackGround()
                 display_Information_Ok("Succes!!!", "Upload JSON FILE")
             Else
                 display_Information_Ok("Failed!!!", "Upload JSON FILE")
@@ -170,6 +174,12 @@ Public Class Form1
         txtBxCellNumber.Text = ""
         txtBxEmail.Text = ""
         txtBxSummary.Text = ""
+
+        Me.info_EducationaBackGround_LisOfDictionary.Clear()
+        lstVw_EducatuonalBackGorund.Items.Clear()
+
+
+
     End Sub
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
@@ -206,7 +216,7 @@ Public Class Form1
         event_chckBx_AddDeatails_CheckedChanged()
     End Sub
 
-    Private Sub RichTextBox1_TextChanged(sender As Object, e As EventArgs) Handles RichTextBox1.TextChanged
+    Private Sub RichTextBox1_TextChanged(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -258,6 +268,20 @@ Public Class Form1
 
 
     End Sub
+
+    Public Sub print_ListView_EducationalBackGround(info_EducationaBackGround_LisOfDictionary As List(Of Dictionary(Of String, String)))
+        Me.info_EducationaBackGround_LisOfDictionary = info_EducationaBackGround_LisOfDictionary
+        lstVw_EducatuonalBackGorund.Items.Clear()
+        For Each row_EducationaBackGround_Dictionary As Dictionary(Of String, String) In info_EducationaBackGround_LisOfDictionary
+            Dim new_ListViewItem As New ListViewItem(row_EducationaBackGround_Dictionary(MyDictionary_EducationalBackGround.Key_Names.key_School_Name))
+            new_ListViewItem.SubItems.Add(row_EducationaBackGround_Dictionary(MyDictionary_EducationalBackGround.Key_Names.key_Year_Started))
+            new_ListViewItem.SubItems.Add(row_EducationaBackGround_Dictionary(MyDictionary_EducationalBackGround.Key_Names.key_Year_Ended))
+            new_ListViewItem.SubItems.Add(row_EducationaBackGround_Dictionary(MyDictionary_EducationalBackGround.Key_Names.key_Remarks))
+
+            lstVw_EducatuonalBackGorund.Items.Add(new_ListViewItem)
+        Next
+    End Sub
+
 End Class
 
 
@@ -275,6 +299,9 @@ Module MyModule
         Public EmailAddress As String
         Public Summary As String
 
+        Public info_EducationaBackGround_LisOfDictionary As List(Of Dictionary(Of String, String))
+
+
     End Class
 
     Public Class InputDataForm
@@ -287,6 +314,10 @@ Module MyModule
         Public txtBxEmail As TextBox
         Public txtBxSummary As TextBox
 
+        Public info_EducationaBackGround_LisOfDictionary As List(Of Dictionary(Of String, String))
+
+
+
         Public Shared Sub convert_USERData_to_InputFORM(ByRef myUserData As UserData, ByRef inputsFromForm As InputDataForm)
 
             inputsFromForm.txtBxFirstName.Text = myUserData.FirstName
@@ -296,6 +327,12 @@ Module MyModule
             inputsFromForm.txtBxCellNumber.Text = myUserData.ContactNumber
             inputsFromForm.txtBxEmail.Text = myUserData.EmailAddress
             inputsFromForm.txtBxSummary.Text = myUserData.Summary
+
+            If (myUserData.info_EducationaBackGround_LisOfDictionary IsNot Nothing) Then
+                inputsFromForm.info_EducationaBackGround_LisOfDictionary = myUserData.info_EducationaBackGround_LisOfDictionary
+                Form1.print_ListView_EducationalBackGround(myUserData.info_EducationaBackGround_LisOfDictionary)
+                'EducationalBackGroundForm.displayTable_EducationaBackGround()
+            End If
 
         End Sub
 
@@ -308,6 +345,7 @@ Module MyModule
             myUserData.ContactNumber = inputsFromForm.txtBxCellNumber.Text
             myUserData.EmailAddress = inputsFromForm.txtBxEmail.Text
             myUserData.Summary = inputsFromForm.txtBxSummary.Text
+            myUserData.info_EducationaBackGround_LisOfDictionary = inputsFromForm.info_EducationaBackGround_LisOfDictionary
 
         End Sub
 
@@ -346,6 +384,7 @@ Module MyModule
             End Try
             If myUserData IsNot Nothing Then
                 InputDataForm.convert_USERData_to_InputFORM(myUserData, inputsFromForm)
+
                 Return True
             Else
                 Return False
@@ -371,6 +410,8 @@ Module MyModule
             Dim fontStyle_Name As New Font(baseFontStyle, 20, Font.BOLD)
             Dim fontStyle_SubHeader As New Font(baseFontStyle, 12, Font.BOLD)
             Dim fontStyle_Body As New Font(baseFontStyle, 11)
+            Dim tableHeader As New Font(baseFontStyle, 11, Font.BOLD)
+
 
             Dim nameParagraph As Paragraph
             If myUserData.MiddleName.Trim() IsNot "" Then
@@ -388,6 +429,26 @@ Module MyModule
                                                   $"{myUserData.ContactNumber}" + vbCrLf +
                                                   $"{myUserData.EmailAddress}", fontStyle_Body)
             contactParagraph.Alignment = Element.ALIGN_CENTER
+
+
+
+
+            Dim educTable As New PdfPTable(3)
+            If myUserData.info_EducationaBackGround_LisOfDictionary.Count > 0 Then
+                educTable.WidthPercentage = 100
+                educTable.AddCell(New Paragraph("School", tableHeader))
+                educTable.AddCell(New Paragraph("Degree", tableHeader))
+                educTable.AddCell(New Paragraph("Year Attended", tableHeader))
+                For Each educDict As Dictionary(Of String, String) In myUserData.info_EducationaBackGround_LisOfDictionary
+                    educTable.AddCell(New Paragraph(educDict(MyDictionary_EducationalBackGround.Key_Names.key_School_Name), fontStyle_Body))
+                    educTable.AddCell(New Paragraph(educDict(MyDictionary_EducationalBackGround.Key_Names.key_Year_Started), fontStyle_Body))
+                    educTable.AddCell(New Paragraph(educDict(MyDictionary_EducationalBackGround.Key_Names.key_Year_Ended), fontStyle_Body))
+                    educTable.AddCell(New Paragraph(educDict(MyDictionary_EducationalBackGround.Key_Names.key_Remarks), fontStyle_Body))
+                Next
+            End If
+
+
+
             doc.Open()
             doc.Add(nameParagraph)
             doc.Add(contactParagraph)
@@ -395,6 +456,15 @@ Module MyModule
             doc.Add(New draw.LineSeparator(1.0F, 100.0F, BaseColor.BLACK, Element.ALIGN_CENTER, 1))
             doc.Add(New Paragraph("Objectives/Summary:", fontStyle_SubHeader))
             doc.Add(New Paragraph(myUserData.Summary, fontStyle_Body))
+
+
+            If myUserData.info_EducationaBackGround_LisOfDictionary.Count > 0 Then
+                doc.Add(New Paragraph(vbCrLf))
+                doc.Add(New Paragraph("Educational Attainment:", fontStyle_SubHeader))
+                doc.Add(New Paragraph(vbCrLf))
+                doc.Add(educTable)
+            End If
+
 
             doc.Close()
             Return True

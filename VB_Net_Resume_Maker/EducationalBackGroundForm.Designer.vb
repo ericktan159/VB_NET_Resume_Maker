@@ -75,21 +75,25 @@ Partial Class EducationalBackGroundForm
         '
         'btn_Remove_EducationalBackGround
         '
+        Me.btn_Remove_EducationalBackGround.Enabled = False
         Me.btn_Remove_EducationalBackGround.Location = New System.Drawing.Point(407, 143)
         Me.btn_Remove_EducationalBackGround.Name = "btn_Remove_EducationalBackGround"
         Me.btn_Remove_EducationalBackGround.Size = New System.Drawing.Size(75, 23)
         Me.btn_Remove_EducationalBackGround.TabIndex = 5
         Me.btn_Remove_EducationalBackGround.Text = "Remove"
         Me.btn_Remove_EducationalBackGround.UseVisualStyleBackColor = True
+        Me.btn_Remove_EducationalBackGround.Visible = False
         '
         'btn_Update_EducationalBackGround
         '
+        Me.btn_Update_EducationalBackGround.Enabled = False
         Me.btn_Update_EducationalBackGround.Location = New System.Drawing.Point(488, 143)
         Me.btn_Update_EducationalBackGround.Name = "btn_Update_EducationalBackGround"
         Me.btn_Update_EducationalBackGround.Size = New System.Drawing.Size(75, 23)
         Me.btn_Update_EducationalBackGround.TabIndex = 6
         Me.btn_Update_EducationalBackGround.Text = "Update"
         Me.btn_Update_EducationalBackGround.UseVisualStyleBackColor = True
+        Me.btn_Update_EducationalBackGround.Visible = False
         '
         'btn_Cancel_EducationalBackGround
         '
